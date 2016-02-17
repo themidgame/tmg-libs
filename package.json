@@ -1,0 +1,23 @@
+{
+  "name": "tmg-libs",
+  "version": "0.0.1",
+  "description": "Contains a set of tools used at themidgame to retrieve, process and store data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "themidgame, INC.",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.2.35",
+    "bluebird": "^3.3.1",
+    "googleapis": "^2.1.7",
+    "merge": "^1.2.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "nock": "^7.2.1"
+  }
+}
