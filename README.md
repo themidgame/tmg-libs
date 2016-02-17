@@ -42,6 +42,15 @@ dynamo.saveItems(items);
 dynamo.saveItem(item);
 ```
 
+### CloudSearch ###
+
+```
+var cloudSearch = tmg-libs.aws.cloudSearch(awsRegion, cloudSearchEndpoint);
+
+// export items to index
+cloudSearch.exportItems(items);
+```
+
 ## YouTube ##
 ### Video ###
 
