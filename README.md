@@ -73,7 +73,7 @@ firehose.saveItems(items);
 
 ```
 var Video = tmg.youtube.video;
-var video = new Video(videoId, apiKey);
+var video = new Video(videoId, channelId, apiKey);
 
 // get video information
 video.getInformation();

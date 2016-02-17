@@ -6,12 +6,13 @@ var google = require('googleapis'),
 
 Promise.promisifyAll(youtube.videos);
 
-function Video(videoId, apiKey) {
-  if (!videoId || !apiKey) {
-    throw new Error('videoId and apiKey are required');
+function Video(videoId, channelId, apiKey) {
+  if (!videoId || !channelId || !apiKey) {
+    throw new Error('videoId, channelId and apiKey are required');
   }
 
   this.videoId = videoId;
+  this.channelId = channelId;
   this.apiKey = apiKey;
   var video = this;
 
