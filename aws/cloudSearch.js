@@ -12,14 +12,28 @@ module.exports = function (region, endpoint) {
   Promise.promisifyAll(Object.getPrototypeOf(csd));
 
   var searchEngine = {
-    exportItems: function (items) {
-      var chunks = _.chunk(items, 5000),
-        promises = chunks.map(searchEngine._exportChunk);
-
-      return Promise.all(promises);
+    exportItems: function (items, chunkSize) {
+      var chunks = _.chunk(items, chunkSize);
+      return searchEngine._exportChunks(chunks);
     },
 
-    _exportChunk: function (items) {
+    _exportChunks: function (chunks) {
+      var workingChunks = chunks.slice();
+      return searchEngine._exportChunksInChain(workingChunks);
+    },
+
+    _exportChunksInChain: function (chunks) {
+      if (!chunks.length) {
+        return null;
+      }
+
+      return searchEngine._exportSingleChunk(chunks.pop())
+        .then(function () {
+          return searchEngine._exportChunksInChain(chunks);
+        });
+    },
+
+    _exportSingleChunk: function (items) {
       var options = {
         contentType: 'application/json',
         documents: JSON.stringify(items)
