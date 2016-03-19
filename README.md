@@ -59,6 +59,19 @@ var cloudSearch = tmg.aws.cloudSearch(awsRegion, cloudSearchEndpoint);
 cloudSearch.exportItems(items);
 ```
 
+```
+var extraOptions = {
+  httpOptions: {
+    agent: new https.Agent({
+      ciphers: 'ALL',
+      secureProtocol: 'TLSv1_method'
+    })
+  }
+};
+
+var cloudSearch = tmg.aws.cloudSearch(awsRegion, cloudSearchEndpoint, extraOptions);
+```
+
 ### Firehose ###
 
 ```
