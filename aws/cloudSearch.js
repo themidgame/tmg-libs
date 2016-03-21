@@ -2,19 +2,13 @@ var Promise = require('bluebird'),
   _ = require('lodash'),
   AWS = require('aws-sdk');
 
-module.exports = function (region, endpoint, extraOptions) {
+module.exports = function (region, endpoint) {
   if (!region || !endpoint) {
     throw new Error('region and endpoint are required');
   }
 
   AWS.config.update({ region: region });
-
-  var csdOptions = { endpoint: endpoint };
-  if (extraOptions) {
-    _.assign(csdOptions, extraOptions);
-  }
-
-  var csd = new AWS.CloudSearchDomain(csdOptions);
+  var csd = new AWS.CloudSearchDomain({ endpoint: endpoint });
   Promise.promisifyAll(Object.getPrototypeOf(csd));
 
   var searchEngine = {
