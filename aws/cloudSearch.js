@@ -24,7 +24,7 @@ module.exports = function (region, endpoint) {
 
     _exportChunksInChain: function (chunks) {
       if (!chunks.length) {
-        return null;
+        return Promise.resolve();
       }
 
       return searchEngine._exportSingleChunk(chunks.pop())

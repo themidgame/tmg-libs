@@ -1,6 +1,6 @@
 {
   "name": "tmg-libs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Contains a set of tools used at themidgame to retrieve, process and store data",
   "main": "index.js",
   "scripts": {
