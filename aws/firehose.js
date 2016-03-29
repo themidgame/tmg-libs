@@ -18,8 +18,6 @@ module.exports = function (region, deliveryStreamName) {
         recordsBatches = _.chunk(records, 500),
         totalBatches = recordsBatches.length;
 
-      console.log('Writing ' + totalRecords + ' items in ' + totalBatches + ' batches');
-
       var promises = recordsBatches.map(function (batch) {
         return store._saveRecords(batch);
       });
