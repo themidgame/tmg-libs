@@ -52,7 +52,7 @@ module.exports = function (region, deliveryStreamName) {
     },
 
     _validateRecordsSaveResults: function (records, writeResults, retryCount) {
-      if (writeResults.FailedPutCount == 0 || retryCount > 2) {
+      if (!writeResults.length || writeResults.FailedPutCount == 0 || retryCount > 2) {
         return writeResults;
       }
 
