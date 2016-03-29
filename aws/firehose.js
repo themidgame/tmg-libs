@@ -18,8 +18,6 @@ module.exports = function (region, deliveryStreamName) {
         recordsBatches = _.chunk(records, 500),
         totalBatches = recordsBatches.length;
 
-      console.log('Writing ' + totalRecords + ' items in ' + totalBatches + ' batches');
-
       var promises = recordsBatches.map(function (batch) {
         return store._saveRecords(batch);
       });
@@ -54,7 +52,7 @@ module.exports = function (region, deliveryStreamName) {
     },
 
     _validateRecordsSaveResults: function (records, writeResults, retryCount) {
-      if (writeResults.FailedPutCount == 0 || retryCount > 2) {
+      if (!writeResults.length || writeResults.FailedPutCount == 0 || retryCount > 2) {
         return writeResults;
       }
 
